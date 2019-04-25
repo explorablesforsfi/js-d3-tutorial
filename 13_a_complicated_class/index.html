@@ -1,0 +1,54 @@
+<meta charset="utf-8">
+
+<head>
+    <script src="/libs/d3.v4.min.js"></script>
+    <script src="rotator.js"></script>
+</head>
+
+<body>
+    <script>
+
+        // define an array of any for elements
+        let a = [1,2,3,4];
+        let rotators = [];  // an array which will contain the rotator objects
+
+        // for each element
+        a.forEach(function (element) {
+            // define the div id
+            let this_div_id = "div_" + element;
+
+            // create the div
+            d3.select("body")
+              .append("div")
+              .attr("id",this_div_id);
+ 
+            // create the rotator and push to other array
+            let rotator = new Rotator('#'+this_div_id, 200,200);
+            rotators.push(rotator);
+
+            // make the rotator go
+            rotator.playpause()
+
+            // note that we could've used `map` here instead of
+            // rotators = []
+            // and rotators.push()
+        });
+
+
+        // make the first rotator green
+        rotators[0].context.strokeStyle = "#afa";
+        
+        // make the second rotator thinner
+        rotators[1].context.lineWidth = 3;
+
+        // make the third rotator go faster
+        rotators[2].d_angle = Math.PI/10;
+
+        // make the last rotator go in the other direction
+        rotators[3].d_angle *= -1;
+    </script>
+    </script>
+</body>
+
+
+
